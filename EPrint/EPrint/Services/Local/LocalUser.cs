@@ -12,7 +12,8 @@ namespace EPrint.Services.Local
         [PrimaryKey, AutoIncrement]
         public long Id
         { get; set; }
-        
+
+        public string IdService { get; set; }
         public string Name { get; set; }
 
         public string Email { get; set; }
