@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="EPrint.Views.StartPage"
+             BackgroundColor="{StaticResource PrimaryColor}">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical" Padding="40">
+                <controls:CircleImage Source="icono.png"
+                                      CornerRadius="40"
+                                  HeightRequest="100" 
+                                  WidthRequest="100" 
+                                  HorizontalOptions="Center"/>
+                <Label Text="E-Print"
+                       TextColor="White"
+                       FontSize="25"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                <Label Text="Más rápido, más sencillo"
+                       HorizontalTextAlignment="Center"
+                       TextColor="White"
+                       FontSize="Medium"
+                   FontAttributes="Bold"/>
+                <Label Text="Te mostraremos las imprentas más cercanas&#x0a; tu ubicación y podrás enviar tu documento&#x0a; para su impresión"
+                       HorizontalTextAlignment="Center"
+                       TextColor="White"
+                       FontSize="Small"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="0,30,0,0" Padding="20" HorizontalOptions="FillAndExpand">
+                <Button Text="REGISTRARSE" TextColor="{StaticResource PrimaryColor}" Command="{Binding RegisterCommand}" FontSize="Small" HeightRequest="40" HorizontalOptions="FillAndExpand" BackgroundColor="White"/>
+                <Button Text="INGRESAR" TextColor="{StaticResource PrimaryColor}" Command="{Binding LoginCommand}" FontSize="Small" HeightRequest="40" HorizontalOptions="FillAndExpand" BackgroundColor="White" Margin="0,10,0,0"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

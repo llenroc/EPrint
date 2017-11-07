@@ -1,0 +1,28 @@
+﻿{
+  "dependencies": {
+    "Microsoft.Azure.Mobile.Client": "4.0.2",
+    "Microsoft.Azure.Mobile.Client.SQLiteStore": "4.0.2",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "sqlite-net-pcl": "1.4.118",
+    "Wapps.Forms.Map": "0.1.2",
+    "Xam.FormsPlugin.Iconize": "1.0.10",
+    "Xam.Plugin.Connectivity": "3.0.3",
+    "Xam.Plugin.Geolocator": "4.1.2",
+    "Xam.Plugin.Iconize.FontAwesome": "1.0.10",
+    "Xam.Plugins.Forms.CurvedImage": "1.0.2",
+    "Xam.Plugins.Settings": "3.1.1",
+    "Xamarin.Forms": "2.4.0.280",
+    "Xamarin.Forms.Maps": "2.4.0.38779"
+  },
+  "frameworks": {
+    "uap10.0.10586": {}
+  },
+  "runtimes": {
+    "win10-arm": {},
+    "win10-arm-aot": {},
+    "win10-x86": {},
+    "win10-x86-aot": {},
+    "win10-x64": {},
+    "win10-x64-aot": {}
+  }
+}

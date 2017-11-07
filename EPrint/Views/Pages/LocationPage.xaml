@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controlMap="clr-namespace:EPrint.Controls"
+             x:Class="EPrint.Views.Pages.LocationPage"
+             Icon="{Binding CurrentIcon}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding IsBusy}" Color="{StaticResource PrimaryColor}" IsRunning="{Binding IsBusy}"
+                           VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Opacity="0.4"/>
+            <StackLayout Grid.Row="0">
+                <controlMap:CustomMap x:Name="myMap" MapType="Street"
+                                  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

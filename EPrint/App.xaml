@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EPrint.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#234A9C</Color>
+            <Color x:Key="ColorAccent">#9BADBA</Color>
+            <Color x:Key="SecundaryColor">#E4F3FF</Color>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
