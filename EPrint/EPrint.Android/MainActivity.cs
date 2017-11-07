@@ -25,6 +25,8 @@ namespace EPrint.Droid
             Xamarin.FormsMaps.Init(this, bundle);
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             SQLitePCL.Batteries.Init();
+            ButtonCircle.FormsPlugin.Droid.ButtonCircleRenderer.Init();
+
             //FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.sliding_tabs);
             LoadApplication(new App());
         }

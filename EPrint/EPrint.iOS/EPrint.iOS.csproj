@@ -125,11 +125,11 @@
     </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FAB.Forms, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FAB.Forms.2.1.1\lib\Xamarin.iOS10\FAB.Forms.dll</HintPath>
+    <Reference Include="ButtonCircle.FormsPlugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.1.2.47\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="FAB.iOS, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FAB.Forms.2.1.1\lib\Xamarin.iOS10\FAB.iOS.dll</HintPath>
+    <Reference Include="ButtonCircle.FormsPlugin.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Plugins.Forms.ButtonCircle.1.2.47\lib\Xamarin.iOS10\ButtonCircle.FormsPlugin.iOS.dll</HintPath>
     </Reference>
     <Reference Include="FormsPlugin.Iconize, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.FormsPlugin.Iconize.1.0.10\lib\Xamarin.iOS10\FormsPlugin.Iconize.dll</HintPath>

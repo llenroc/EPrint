@@ -1,13 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"
              x:Class="EPrint.Views.Pages.FilesPage"
              Icon="{Binding CurrentIcon}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="File Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <RelativeLayout>
+            <ContentView
+				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+                <ListView
+					x:Name="list"
+                    ItemsSource="{Binding FilesToPrint}"
+					BackgroundColor="White">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <BoxView HeightRequest="2" WidthRequest="350"  BackgroundColor="Silver" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding Key}" TextColor="Gray" FontSize="Large"
+              	VerticalOptions="Center" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"   />
+                                <BoxView HeightRequest="2" WidthRequest="350" BackgroundColor="Silver" HorizontalOptions="StartAndExpand" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ContentView>
+            <controls:CircleButton
+				x:Name="fabBtn"
+                HeightRequest="50"
+                WidthRequest="50"
+                BorderRadius="50"
+                TextColor="White"
+                FontSize="25"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                Icon="ic_add"
+				BackgroundColor="{StaticResource PrimaryColor}"
+				RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"
+				RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}" />
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

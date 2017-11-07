@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace EPrint.Models
 {
     public class FilePrint
     {
-        [Newtonsoft.Json.JsonProperty("Id")]
+        [JsonProperty("Id")]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Format { get; set; }
@@ -18,5 +19,7 @@ namespace EPrint.Models
         public bool IsPrinted { get; set; }
         public string UserId { get; set; }
         public string PrinterId { get; set; }
+        [JsonIgnore]
+        public string ImageUrl { get; set; }
     }
 }
