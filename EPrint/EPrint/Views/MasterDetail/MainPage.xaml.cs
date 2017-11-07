@@ -41,8 +41,8 @@ namespace EPrint.Views.MasterDetail
                     case "Ubicación":
                         Tabbed.CurrentTabbed.CurrentPage = Tabbed.CurrentTabbed.Children[3];
                         break;
-                    case "Ajustes":
-                        Navigation.PushAsync(new NavigationPage((Page)Activator.CreateInstance(item.Target)));
+                    default:
+                        
                         break;
                 }
                 
