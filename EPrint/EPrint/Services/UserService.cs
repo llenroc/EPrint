@@ -37,8 +37,8 @@ namespace EPrint.Services
             User user = null;
             try
             {
-                var tabla = App.MobileService.GetTable<User>();
-                var users = await tabla.Where(x => x.Email == email).Take(1).ToListAsync();
+                var userTable = App.MobileService.GetTable<User>();
+                var users = await userTable.Where(x => x.Email == email).Take(1).ToListAsync();
                 user = users.FirstOrDefault();
                 return user;
             }
@@ -52,8 +52,8 @@ namespace EPrint.Services
         {
             try
             {
-                var tabla = App.MobileService.GetTable<User>();
-                await tabla.UpdateAsync(user);
+                var userTable = App.MobileService.GetTable<User>();
+                await userTable.UpdateAsync(user);
                 return user;
             }
             catch (Exception ex)

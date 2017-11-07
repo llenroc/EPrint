@@ -10,19 +10,49 @@ namespace EPrint.Services
 {
     public class FilePrintService : IFilePrint
     {
-        public Task<List<FilePrint>> GetAllFiles()
+        public async Task<List<FilePrint>> GetAllFiles()
         {
-            throw new NotImplementedException();
+            List<FilePrint> files = new List<FilePrint>();
+            try
+            {
+                var filePrinterTable = App.MobileService.GetTable<FilePrint>();
+                files = await filePrinterTable.ToListAsync();
+                return files;
+            }
+            catch (Exception ex)
+            {
+                return files;
+            }
         }
 
-        public Task<List<FilePrint>> GetFilesPrinted()
+        public async Task<List<FilePrint>> GetFilesPrinted()
         {
-            throw new NotImplementedException();
+            List<FilePrint> files = new List<FilePrint>();
+            try
+            {
+                var filePrinterTable = App.MobileService.GetTable<FilePrint>();
+                files = await filePrinterTable.Where(x => x.IsPrinted).ToListAsync();
+                return files;
+            }
+            catch (Exception ex)
+            {
+                return files;
+            }
         }
 
-        public Task<List<FilePrint>> GetFilesUnprinted()
+        public async Task<List<FilePrint>> GetFilesUnprinted()
         {
-            throw new NotImplementedException();
+            List<FilePrint> files = new List<FilePrint>();
+            try
+            {
+                var filePrinterTable = App.MobileService.GetTable<FilePrint>();
+                files = await filePrinterTable.Where(x => !x.IsPrinted).ToListAsync();
+                return files;
+            }
+            catch (Exception ex)
+            {
+                return files;
+            }
         }
     }
 }
