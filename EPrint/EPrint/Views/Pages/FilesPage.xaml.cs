@@ -19,13 +19,13 @@ namespace EPrint.Views.Pages
 		{
 			InitializeComponent ();
             BindingContext = vm =  new FilesPageViewModel(DependencyService.Get<IFilePrintService>());
+            
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             vm.LoadCommand.Execute(null);
-
         }
     }
 }

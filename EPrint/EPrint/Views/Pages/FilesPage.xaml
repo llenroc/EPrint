@@ -6,36 +6,66 @@
              Icon="{Binding CurrentIcon}">
     <ContentPage.Content>
         <RelativeLayout>
-            <ContentView
+
+            <StackLayout
+                Padding="10,20,10,0"
 				RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
 				RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
                 <ListView
 					x:Name="list"
-                    ItemsSource="{Binding FilesToPrint}"
-					BackgroundColor="White">
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding FilesToPrint}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <Image Source="{Binding ImageUrl}" HeightRequest="50" WidthRequest="50"/>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Description}" 
+                            <ViewCell>
+                                <ContentView Padding="0,10,0,0">
+                                    <StackLayout Orientation="Horizontal" 
+                                                 VerticalOptions="CenterAndExpand" 
+                                                 HorizontalOptions="CenterAndExpand">
+                                        <Image Source="{Binding ImageUrl}"
+                                               VerticalOptions="CenterAndExpand" 
+                                               HorizontalOptions="CenterAndExpand"/>
+                                        <StackLayout Orientation="Vertical"
+                                                     VerticalOptions="CenterAndExpand" 
+                                                     HorizontalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Name}" 
+                                                   TextColor="Black" 
+                                                   FontAttributes="Bold"
+                                                   FontSize="Small"/>
+                                            <StackLayout Orientation="Horizontal" Margin="0,-10,0,0">
+                                                <Label Text="{Binding Description, StringFormat='{}{0:dd\\ MMMM\\ yyyy -\\ HH\\:mm}'}" 
                                                TextColor="{StaticResource PrimaryColor}"
-                                               FontSize="Small"/>
-                                        <Label Text="{Binding Size}"
+                                               FontSize="Micro"/>
+                                                <Label Text="{Binding Size}"
                                                TextColor="{StaticResource PrimaryColor}"
-                                               FontSize="Small"/>
-                                    </StackLayout>
-                                </StackLayout>
-                                <Button Text="ENVIAR" 
+                                               FontSize="Micro"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Button Text="ENVIAR" HorizontalOptions="EndAndExpand" 
                                         TextColor="{StaticResource PrimaryColor}"
-                                        BackgroundColor="{StaticResource ColorAccent}" />
-                            </StackLayout>
+                                        BackgroundColor="{StaticResource SecundaryColor}"
+                                        />
+                                    </StackLayout>
+                                </ContentView>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </ContentView>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsBusy}" RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                        Property=Height,
+                                        Factor=0.33}"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                        Property=Height,
+                                        Factor=0.33}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               Color="{StaticResource PrimaryColor}"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Cargando..." HorizontalOptions="Center" TextColor="Black"/>
+            </StackLayout>
+
             <controls:CircleButton
 				x:Name="fabBtn"
                 HeightRequest="50"
@@ -46,6 +76,7 @@
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand"
                 Icon="ic_add"
+                Command="{Binding AddCommand}"
 				BackgroundColor="{StaticResource PrimaryColor}"
 				RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-75}"
 				RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-75}" />

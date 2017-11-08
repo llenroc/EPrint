@@ -1,8 +1,10 @@
 ﻿using EPrint.Interfaces;
 using EPrint.Models;
 using EPrint.Services.Interfaces;
+using Plugin.FilePicker;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,9 +39,9 @@ namespace EPrint.ViewModels.Pages
             get => IsSelected ? "filesSelected.png" : "files.png";
         }
 
-        private List<FilePrint> filesToPrint;
+        private ObservableCollection<FilePrint> filesToPrint;
 
-        public List<FilePrint> FilesToPrint
+        public ObservableCollection<FilePrint> FilesToPrint
         {
             get { return filesToPrint; }
             set { SetProperty(ref filesToPrint, value); }
@@ -61,14 +63,14 @@ namespace EPrint.ViewModels.Pages
 
         IFilePrintService service;
 
-        
+
 
         public FilesPageViewModel(IFilePrintService service)
         {
             this.service = service;
-            FilesToPrint = new List<FilePrint>();
+            FilesToPrint = new ObservableCollection<FilePrint>();
             LoadCommand = new Command(async () => await Load());
-            AddCommand = new Command(Add);
+            AddCommand = new Command(async () => await Add());
         }
 
         private async Task Load()
@@ -96,7 +98,7 @@ namespace EPrint.ViewModels.Pages
                             break;
                     }
                     FilesToPrint.Add(file);
-                }               
+                }
                 IsBusy = false;
             }
             catch (Exception ex)
@@ -106,8 +108,85 @@ namespace EPrint.ViewModels.Pages
             }
         }
 
-        public void Add() {
+        public async Task Add()
+        {
+            var file = await CrossFilePicker.Current.PickFile();
+            string format = file.FileName.Substring(file.FileName.LastIndexOf('.') + 1);
+            string formatToFile = "";
+            string urlImage = "";
+            
+            switch (format)
+            {
+                case "doc":
+                    formatToFile = "Word";
+                    urlImage = "word.png";
+                    break;
+                case "docx":
+                    formatToFile = "Word";
+                    urlImage = "word.png";
+                    break;
+                case "pdf":
+                    formatToFile = "PDF";
+                    urlImage = "pdf.png";
+                    break;
+                case "ppt":
+                    formatToFile = "Power Point";
+                    urlImage = "power.png";
+                    break;
+                case "pptx":
+                    formatToFile = "Power Point";
+                    urlImage = "power.png";
+                    break;
+                case "xls":
+                    formatToFile = "Excel";
+                    urlImage = "excel.png";
+                    break;
+                case "xlsx":
+                    formatToFile = "Excel";
+                    urlImage = "excel.png";
+                    break;
+                
+            }
+            if (formatToFile != "")
+            {
+                FilePrint fileToPrint = new FilePrint()
+                {
+                    Name = file.FileName,
+                    Format = formatToFile,
+                    IsPrinted = false,
+                    UserId = App.InternalDatabase.GetUser().IdService,
+                    Size = NormalizeFileSize(file.DataArray.Length),
+                    Description = DateTime.Today.ToString(),
+                    ImageUrl = urlImage
+                };
+                var wasAdded = await service.AddFile(fileToPrint);
+                if (wasAdded)
+                {
+                    FilesToPrint.Add(fileToPrint);
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Algo ha pasado :(", "Ok");
+                }
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Formato no soportado", "Ok");
+            }
 
+        }
+
+        private string NormalizeFileSize(int fileSize)
+        {
+            string[] units = { "B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+            double size = fileSize;
+            int unit = 0;
+            while (size >= 1024)
+            {
+                size /= 1024;
+                ++unit;
+            }
+            return $"{size:0.#} {units[unit]}";
         }
     }
 }

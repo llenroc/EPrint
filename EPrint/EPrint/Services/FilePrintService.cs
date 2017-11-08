@@ -13,6 +13,20 @@ namespace EPrint.Services
 {
     public class FilePrintService : IFilePrintService
     {
+        public async Task<bool> AddFile(FilePrint file)
+        {
+            try
+            {
+                var fileTable = App.MobileService.GetTable<FilePrint>();
+                await fileTable.InsertAsync(file);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public async Task<List<FilePrint>> GetAllFiles()
         {
             List<FilePrint> files = new List<FilePrint>();
