@@ -1,4 +1,5 @@
-﻿using EPrint.ViewModels.Pages;
+﻿using EPrint.Services.Interfaces;
+using EPrint.ViewModels.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,18 @@ namespace EPrint.Views.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FilesPage : ContentPage
 	{
-		public FilesPage ()
+        FilesPageViewModel vm;
+        public FilesPage ()
 		{
 			InitializeComponent ();
-            BindingContext = new FilesPageViewModel();
+            BindingContext = vm =  new FilesPageViewModel(DependencyService.Get<IFilePrintService>());
         }
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vm.LoadCommand.Execute(null);
+
+        }
+    }
 }

@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EPrint.Models;
+using Xamarin.Forms;
+using EPrint.Services;
 
+[assembly: Dependency(typeof(FilePrintService))]
 namespace EPrint.Services
 {
-    public class FilePrintService : IFilePrint
+    public class FilePrintService : IFilePrintService
     {
         public async Task<List<FilePrint>> GetAllFiles()
         {

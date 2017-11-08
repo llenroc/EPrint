@@ -16,10 +16,21 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                <BoxView HeightRequest="2" WidthRequest="350"  BackgroundColor="Silver" HorizontalOptions="StartAndExpand"/>
-                                <Label Text="{Binding Key}" TextColor="Gray" FontSize="Large"
-              	VerticalOptions="Center" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"   />
-                                <BoxView HeightRequest="2" WidthRequest="350" BackgroundColor="Silver" HorizontalOptions="StartAndExpand" />
+                                <Image Source="{Binding ImageUrl}" HeightRequest="50" WidthRequest="50"/>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Description}" 
+                                               TextColor="{StaticResource PrimaryColor}"
+                                               FontSize="Small"/>
+                                        <Label Text="{Binding Size}"
+                                               TextColor="{StaticResource PrimaryColor}"
+                                               FontSize="Small"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Button Text="ENVIAR" 
+                                        TextColor="{StaticResource PrimaryColor}"
+                                        BackgroundColor="{StaticResource ColorAccent}" />
                             </StackLayout>
                         </DataTemplate>
                     </ListView.ItemTemplate>

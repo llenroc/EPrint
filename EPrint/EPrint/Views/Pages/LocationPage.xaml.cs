@@ -27,7 +27,7 @@ namespace EPrint.Views.Pages
                 myMap.Pins.Add(pin);
             }
             myMap.MoveToRegion(MapSpan.FromCenterAndRadius(
-              new Position(-8.099946, -79.0201638), Distance.FromMeters(500.0)));
+              new Position(vm.Latitude, vm.Longitude), Distance.FromMeters(500.0)));
         }
 
         protected override void OnAppearing()

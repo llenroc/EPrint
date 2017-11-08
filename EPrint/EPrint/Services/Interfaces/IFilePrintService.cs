@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EPrint.Services.Interfaces
 {
-    public interface IFilePrint
+    public interface IFilePrintService
     {
         Task<List<FilePrint>> GetAllFiles();
         Task<List<FilePrint>> GetFilesPrinted(string IdUser);
