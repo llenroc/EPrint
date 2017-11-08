@@ -85,29 +85,30 @@ namespace EPrint.ViewModels.Pages
         {
             this.service = service;
             Pins = new List<CustomPin>();
-            LoadCommand = new Command(async () => await Load());
+            LoadCommand = new Command(Load);
             CurrentLocationCommand = new Command(async () => await GetLocation());
         }
 
-        private async Task Load()
+        private void Load()
         {
             try
             {
                 IsBusy = true;
-                var printers = await service.AllPrinters();
+                //var printers = await service.AllPrinters();
 
-                foreach (var print in printers)
-                {
-                    Pins.Add(new CustomPin()
-                    {
-                        Type = PinType.Place,
-                        Position = new Position(print.Lat, print.Long),
-                        Label = print.Name,
-                        Address = print.Address,
-                        Id = print.Id,
-                        Url = print.Url
-                    });
-                }
+                //foreach (var print in printers)
+                //{
+                //    Pins.Add(new CustomPin()
+                //    {
+                //        Type = PinType.Place,
+                //        Position = new Position(print.Lat, print.Long),
+                //        Label = print.Name,
+                //        Address = print.Address,
+                //        Id = print.Id,
+                //        Url = print.Url
+                //    });
+                //}
+                
                 IsBusy = false;
             }
             catch (Exception ex)

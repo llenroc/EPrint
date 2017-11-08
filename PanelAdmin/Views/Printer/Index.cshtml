@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EPrint.Models.Printer>
+
+@{
+    ViewBag.Title = "Lista de imprentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de imprentas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Url
+        </th>
+        <th>
+            Latitud
+        </th>
+        <th>
+            Longitud
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Long)
+        </td>
+    </tr>
+}
+
+</table>
