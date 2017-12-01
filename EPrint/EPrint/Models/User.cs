@@ -19,6 +19,8 @@ namespace EPrint.Models
 
         public bool IsAdmin { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string Picture { get; set; }
+
+        public string AccessToken { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using EPrint.Helpers;
+using EPrint.Models;
 using EPrint.Resources;
 using EPrint.Services.Interfaces;
 using EPrint.Services.Local;
+using EPrint.Views;
 using EPrint.Views.MasterDetail;
 using Plugin.Connectivity;
 using System;
@@ -35,6 +37,8 @@ namespace EPrint.ViewModels
 
         public ICommand LoginCommand { get; set; }
         public ICommand RecoveryCommand { get; set; }
+        public ICommand LoginFacebookCommand { get; set; }
+        public INavigation Navigation { get; set; }
 
         #endregion
 
@@ -44,6 +48,46 @@ namespace EPrint.ViewModels
         {
             this.service = service;
             LoginCommand = new Command(async () => await Login());
+            LoginFacebookCommand = new Command(async () => await LoginFacebook());
+            MessagingCenter.Subscribe<LoginPage, string>(this, "GetUser", async (sender, token) =>
+            {
+
+                var u = await EPrint.Services.Facebook.Service.GetUserAsync(token);
+
+                var user = await service.GetUserByEmail(u.Email);
+                if (user != null)
+                {
+                    var pass = Crypto.EncryptAes(Password, Variables.PasswordKey);
+                    if (user.Password == pass)
+                    {
+                        Helper.SaveInternalUser(user);
+                        IsBusy = false;
+                        Settings.IsLogin = true;
+                        Application.Current.MainPage = new MainPage();
+                    }
+                    else
+                    {
+                        ErrorMessage = "Usuario o contraseña invalidos";
+                    }
+
+                }
+                else
+                {
+                    var isRegistered = await service.AddUser(user);
+                    if (isRegistered)
+                    {
+                        Helper.SaveInternalUser(user);
+                        IsBusy = false;
+                        Settings.IsLogin = true;
+                        App.Current.MainPage = new MainPage();
+                    }
+                    else
+                    {
+                        IsBusy = false;
+                        ErrorMessage = "Algo ha pasado :(";
+                    }
+                }
+            });
         }
 
         private async Task Login()
@@ -56,7 +100,7 @@ namespace EPrint.ViewModels
                     var user = await service.GetUserByEmail(Email);
                     if (user != null)
                     {
-                        var pass =  Crypto.EncryptAes(Password, Variables.PasswordKey);
+                        var pass = Crypto.EncryptAes(Password, Variables.PasswordKey);
                         if (user.Password == pass)
                         {
                             var u = new LocalUser()
@@ -67,27 +111,27 @@ namespace EPrint.ViewModels
                                 Password = user.Password,
                                 IsAdmin = user.IsAdmin
                             };
-                            if (user.ImageUrl == "" || user.ImageUrl == null)
+                            if (user.Picture == "" || user.Picture == null)
                             {
                                 u.ImageUrl = "user.png";
                             }
                             App.InternalDatabase.SaveUser(u);
                             IsBusy = false;
                             Settings.IsLogin = true;
-                            App.Current.MainPage = new MainPage();
+                            Application.Current.MainPage = new MainPage();
                         }
                         else
                         {
                             ErrorMessage = "Usuario o contraseña invalidos";
                         }
-                       
+
                     }
                     else
                     {
                         IsBusy = false;
                         ErrorMessage = "Usuario o contraseña invalidos";
                     }
-                   
+
                 }
                 else
                 {
@@ -100,6 +144,11 @@ namespace EPrint.ViewModels
                 IsBusy = false;
                 ErrorMessage = ex.Message;
             }
+        }
+
+        private async Task LoginFacebook()
+        {
+            await Navigation.PushAsync(new LoginTransitionPage());
         }
     }
 }

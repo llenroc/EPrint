@@ -65,19 +65,7 @@ namespace EPrint.ViewModels
                         var isRegistered = await service.AddUser(user);
                         if (isRegistered)
                         {
-                            var u = new LocalUser()
-                            {
-                                IdService = user.Id,
-                                Name = user.Name,
-                                Email = user.Email,
-                                Password = user.Password,
-                                IsAdmin = user.IsAdmin
-                            };
-                            if (user.ImageUrl == "" || user.ImageUrl == null)
-                            {
-                                u.ImageUrl = "user.png";
-                            }
-                            App.InternalDatabase.SaveUser(u);
+                            Helper.SaveInternalUser(user);
                             IsBusy = false;
                             Settings.IsLogin = true;
                             App.Current.MainPage = new MainPage();

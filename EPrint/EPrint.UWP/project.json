@@ -13,11 +13,12 @@
     "Xam.Plugin.Iconize.FontAwesome": "1.0.10",
     "Xam.Plugins.Forms.CurvedImage": "1.0.2",
     "Xam.Plugins.Settings": "3.1.1",
+    "Xamarin.Auth": "1.5.0.3",
     "Xamarin.Forms": "2.4.0.38779",
     "Xamarin.Forms.Maps": "2.4.0.38779"
   },
   "frameworks": {
-    "uap10.0.10586": {}
+    "uap10.0.10240": {}
   },
   "runtimes": {
     "win10-arm": {},

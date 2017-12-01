@@ -19,6 +19,7 @@ namespace EPrint.Views
         {
             InitializeComponent();
             BindingContext = vm = new LoginPageViewModel(DependencyService.Get<IUserService>());
+            vm.Navigation = Navigation;
         }
     }
 }
