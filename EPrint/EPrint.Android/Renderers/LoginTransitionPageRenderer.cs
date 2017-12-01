@@ -13,7 +13,9 @@ using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms;
 using Xamarin.Auth;
 using EPrint.Views;
+using EPrint.Droid.Renderers;
 
+[assembly: ExportRenderer(typeof(LoginTransitionPage), typeof(LoginTransitionPageRenderer))]
 namespace EPrint.Droid.Renderers
 {
     public class LoginTransitionPageRenderer : PageRenderer
