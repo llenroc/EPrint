@@ -20,7 +20,7 @@ namespace EPrint.Services.Local
                     Password = user.Password,
                     IsAdmin = user.IsAdmin
                 };
-                if (user.Picture == "" || user.Picture == null)
+                if (user.ImageUrl == "" || user.ImageUrl == null)
                 {
                     u.ImageUrl = "user.png";
                 }

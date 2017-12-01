@@ -38,7 +38,7 @@ namespace EPrint.Droid.Renderers
                 {
                     var token = eventArgs.Account.Properties["access_token"];
                     var main = App.Current.MainPage;
-                    MessagingCenter.Send<LoginPage, string>((LoginPage)main, "GetUser", token);
+                    MessagingCenter.Send<object, string>(this, "GetUser", token);
                     //App.Instance.NavigateToMain();
                 }
                 else

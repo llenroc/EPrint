@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace EPrint.Models
 {
     public class User
     {
-        [Newtonsoft.Json.JsonProperty("Id")]
+        [JsonProperty("Id")]
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -19,7 +20,7 @@ namespace EPrint.Models
 
         public bool IsAdmin { get; set; }
 
-        public string Picture { get; set; }
+        public string ImageUrl { get; set; }
 
         public string AccessToken { get; set; }
     }

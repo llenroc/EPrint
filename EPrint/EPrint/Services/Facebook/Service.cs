@@ -14,8 +14,9 @@ namespace EPrint.Services.Facebook
         public static async Task<User> GetUserAsync(string accessToken)
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(@"https://graph.facebook.com/me?fields=id,name,email,picture{url}&access_token={accessToken}");
+            var json = await httpClient.GetStringAsync($"https://graph.facebook.com/me?fields=id,name,email&access_token={accessToken}");
             var user = JsonConvert.DeserializeObject<User>(json);
+            user.ImageUrl = string.Format("http://graph.facebook.com/{0}/picture?type=large", user.Id);
             return user;
         }
     }

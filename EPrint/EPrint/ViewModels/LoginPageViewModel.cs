@@ -49,7 +49,7 @@ namespace EPrint.ViewModels
             this.service = service;
             LoginCommand = new Command(async () => await Login());
             LoginFacebookCommand = new Command(async () => await LoginFacebook());
-            MessagingCenter.Subscribe<LoginPage, string>(this, "GetUser", async (sender, token) =>
+            MessagingCenter.Subscribe<object, string>(this, "GetUser", async (sender, token) =>
             {
 
                 var u = await EPrint.Services.Facebook.Service.GetUserAsync(token);
@@ -111,7 +111,7 @@ namespace EPrint.ViewModels
                                 Password = user.Password,
                                 IsAdmin = user.IsAdmin
                             };
-                            if (user.Picture == "" || user.Picture == null)
+                            if (user.ImageUrl == "" || user.ImageUrl == null)
                             {
                                 u.ImageUrl = "user.png";
                             }
