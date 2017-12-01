@@ -1,3 +1,3 @@
 # EPrint Application
 
-App for managment printers and users
+Simple app for managment printers and users.
